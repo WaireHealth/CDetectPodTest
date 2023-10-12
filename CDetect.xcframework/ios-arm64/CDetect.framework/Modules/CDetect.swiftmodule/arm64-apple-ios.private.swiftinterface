@@ -1,0 +1,662 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
+// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name CDetect
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+@_exported import CDetect
+import CoreBluetooth
+import DeveloperToolsSupport
+import Foundation
+import Swift
+import SwiftUI
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc @_hasMissingDesignatedInitializers @objcMembers public class DiscoveredDevice : ObjectiveC.NSObject {
+  @objc public var peripheral: CoreBluetooth.CBPeripheral {
+    @objc get
+  }
+  @objc public var name: Swift.String {
+    @objc get
+  }
+  @objc public var rssistr: Swift.String {
+    @objc get
+  }
+  @objc public var rssi: Swift.Int {
+    @objc get
+  }
+  @objc public var image: Swift.String {
+    @objc get
+  }
+  @objc public var isBonded: Swift.Bool {
+    @objc get
+  }
+  @objc public func updateRssi(newRssi: Swift.Int)
+  @objc deinit
+}
+@objc public protocol WaireDeviceDelegate {
+  @objc func deviceWasSet(device: CDetect.CDetectPeripheral)
+  @objc func deviceStateDidChange(device: CDetect.CDetectPeripheral, state: CDetect.DeviceState)
+  @objc func readingsDidChange(device: CDetect.CDetectPeripheral, readings: CDetect.CDetectPayload)
+  @objc func didGetDeviceConfiguration(setting: Swift.String, value: Swift.String)
+  @objc func deviceConfiguredSuccessfully(device: CDetect.CDetectPeripheral, configuration: Swift.String)
+  @objc func deviceFailedToConfigure(device: CDetect.CDetectPeripheral, reason: Swift.String)
+  @objc func deviceConfigurationProgressUpdated(current: Swift.Int, total: Swift.Int)
+}
+extension CDetect.WaireDeviceDelegate {
+  public func deviceWasSet(device: CDetect.CDetectPeripheral)
+  public func deviceStateDidChange(device: CDetect.CDetectPeripheral, state: CDetect.DeviceState)
+  public func readingsDidChange(device: CDetect.CDetectPeripheral, readings: CDetect.CDetectPayload)
+  public func didGetDeviceConfiguration(setting: Swift.String, value: Swift.String)
+  public func deviceConfiguredSuccessfully(device: CDetect.CDetectPeripheral, configuration: Swift.String)
+  public func deviceFailedToConfigure(device: CDetect.CDetectPeripheral, reason: Swift.String)
+  public func deviceConfigurationProgressUpdated(current: Swift.Int, total: Swift.Int)
+}
+public protocol WaireUpdateDelegate {
+  func onPrepared(type: CDetect.OTAType)
+  func onStarted(type: CDetect.OTAType)
+  func onComplete(type: CDetect.OTAType)
+  func onFailed(type: CDetect.OTAType, reason: Swift.String)
+  func onProgress(type: CDetect.OTAType, percent: Swift.Int)
+}
+public struct ConfigurableSettings {
+  public static let SerialNumber: Swift.String
+  public static let Features: Swift.String
+  public static let LEDBrightness: Swift.String
+  public static let SSID: Swift.String
+  public static let Key: Swift.String
+  public static let PowerMode: Swift.String
+  public static let HeartRateWarning: Swift.String
+  public static let HeartRateDanger: Swift.String
+  public static let HeartRateConfidence: Swift.String
+  public static let RespRateWarning: Swift.String
+  public static let RespRateDanger: Swift.String
+  public static let RespRateConfidence: Swift.String
+  public static let CBTempWarning: Swift.String
+  public static let CBTempDanger: Swift.String
+  public static let CBTempConfidence: Swift.String
+  public static let PulseOxyRateWarning: Swift.String
+  public static let PulseOxyRateDanger: Swift.String
+  public static let PulseOxyConfidence: Swift.String
+  public static let UserAge: Swift.String
+  public static let UserHeight: Swift.String
+  public static let UserWeight: Swift.String
+  public static let UserGender: Swift.String
+  public static let UserSkinTone: Swift.String
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers public class CDetectPayload : ObjectiveC.NSObject {
+  @objc public var readingTime: Swift.Int64
+  @objc public var time: Swift.Int
+  @objc public var greenCounter: Swift.Int
+  @objc public var greenCounter2: Swift.Int
+  @objc public var irCounter: Swift.Int
+  @objc public var redCounter: Swift.Int
+  @objc public var accelX: Swift.Int16
+  @objc public var accelY: Swift.Int16
+  @objc public var accelZ: Swift.Int16
+  @objc public var batteryLevel: Swift.Int
+  @objc public var heartRate: Swift.Float
+  @objc public var heartRateConfidence: Swift.Int
+  @objc public var rrInterval: Swift.Float
+  @objc public var rrIntervalConfidence: Swift.Int
+  @objc public var respirationRate: Swift.Float
+  @objc public var respirationRateConfidence: Swift.Int
+  @objc public var spO2: Swift.Float
+  @objc public var spO2RValue: Swift.Float
+  @objc public var spO2Confidence: Swift.Int
+  @objc public var skinTemp: Swift.Float
+  @objc public var coreBodyTemp: Swift.Float
+  @objc public var coreBodyTempConfidence: Swift.Int
+  public var activity: CDetect.Activity
+  public var skinContact: CDetect.SkinContact
+  public var userMotion: CDetect.UserMotion
+  public var userPosition: CDetect.UserPosition
+  @objc public var lowSignalQuality: Swift.Bool
+  @objc public var excessiveMotion: Swift.Bool
+  @objc public var lowPI: Swift.Bool
+  @objc public var unreliableR: Swift.Bool
+  @objc public var loggingActive: Swift.Bool
+  public var healthState: CDetect.HealthState
+  @objc public var fallDetectReportId: Swift.UInt8
+  @objc public var fallDetectFreefallPeriod: Swift.UInt8
+  @objc public var fallDetectMaxmG: Swift.Int16
+  @objc public var fallDetectNoMotionPeriod: Swift.UInt8
+  @objc public var perfusionIndexRed: Swift.Float
+  @objc public var perfusionIndexInfrared: Swift.Float
+  @objc public var restingHeartRate: Swift.Float
+  @objc public var restingRespirationRate: Swift.Float
+  @objc public var restingSpO2: Swift.Float
+  @objc public var restingCoreBodyTemp: Swift.Float
+  public var heartRateTrend: CDetect.VitalTrend
+  public var respirationRateTrend: CDetect.VitalTrend
+  public var spO2Trend: CDetect.VitalTrend
+  public var coreBodyTempTrend: CDetect.VitalTrend
+  @objc public var stressLevel: Swift.Int
+  @objc public var dailyStepsRun: Swift.Int
+  @objc public var dailyStepsWalk: Swift.Int
+  @objc public var dailyKCalsExpended: Swift.Float
+  @objc public var dailyActiveKCalsExpended: Swift.Float
+  public var sleepQuality: CDetect.SleepQuality
+  @objc public var beaconName: Swift.String
+  @objc public var beaconTemperature: Swift.Float
+  @objc public var beaconHumidity: Swift.Float
+  @objc public var beaconLightLevel: Swift.Float
+  @objc public var beaconNoiseLevel: Swift.Float
+  @objc public var heartRateVariability: Swift.Float
+  @objc public var heartRateVariabilityMotion: Swift.Bool
+  public var readingQuality: CDetect.ReadingQuality
+  @objc public var isExtendedReport: Swift.Bool
+  @objc public var beacon: CDetect.Beacon?
+  @objc public var cuff: CDetect.BPCuff?
+  @objc public var scale: CDetect.WeightScale?
+  @objc public var crcValid: Swift.Bool
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers public class Beacon : ObjectiveC.NSObject {
+  @objc public var address: Swift.String
+  @objc public var detectedAt: Swift.Int64
+  @objc public var currentTime: Swift.Int64
+  @objc public var signalStrength: Swift.Int
+  @objc public var localTemp: Swift.Float
+  @objc public var localHumid: Swift.Float
+  @objc public var battery: Swift.Int
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers public class BPCuff : ObjectiveC.NSObject {
+  @objc public var measurementTime: Swift.Int
+  @objc public var battery: Swift.Int
+  public var units: CDetect.PressureUnits
+  @objc public var systolic: Swift.Int
+  @objc public var diastolic: Swift.Int
+  @objc public var arterial: Swift.Int
+  @objc public var pulseRate: Swift.Int
+  @objc public var irregularPulseDetected: Swift.Bool
+  public var pulseRateRange: CDetect.PulseRateRange
+  public var pulseMeasurementPosition: CDetect.PulseMeasurementPosition
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers public class WeightScale : ObjectiveC.NSObject {
+  @objc public var measurementTime: Swift.Int
+  @objc public var battery: Swift.Int
+  public var units: CDetect.WeightScaleUnits
+  @objc public var weight: Swift.Double
+  @objc deinit
+}
+public protocol BaseConfiguration : Swift.Decodable, Swift.Encodable {
+  var cid: Swift.String { get set }
+  var sno: Swift.String? { get set }
+  var dlm: Swift.String? { get set }
+  var dlp: Swift.String? { get set }
+  var hu1: Swift.String? { get set }
+  var hp1: Swift.String? { get set }
+  var hu2: Swift.String? { get set }
+  var hp2: Swift.String? { get set }
+  var rxe: Swift.String? { get set }
+  var tke: Swift.String? { get set }
+  var kye: Swift.String? { get set }
+  var rcm: Swift.String? { get set }
+  var rcp: Swift.String? { get set }
+  var ale: Swift.String? { get set }
+  var pro: Swift.String? { get set }
+}
+@objc public enum DeviceState : Swift.Int {
+  case connected
+  case disconnected
+  case initialising
+  case unknown
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum DeviceType : Swift.Int {
+  case cdetect
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objcMembers public class DeviceProperties {
+  @objc public init(serialNumber: Swift.String = "00000000000", hostVersion: Swift.String = "0.0.0", hubVersion: Swift.String = "0.0.0", bleVersion: Swift.String = "0.0.0", featureSet: Swift.String = "1")
+  @objc public func updateVersions(host: Swift.String, hub: Swift.String, ble: Swift.String)
+  @objc public func updateSerial(serial: Swift.String)
+  @objc public func updateFeatures(features: Swift.String)
+  @objc public var serial: Swift.String {
+    @objc get
+  }
+  @objc public var host: Swift.String {
+    @objc get
+  }
+  @objc public var hub: Swift.String {
+    @objc get
+  }
+  @objc public var ble: Swift.String {
+    @objc get
+  }
+  @objc public var features: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objcMembers public class TrendingData {
+  @objc public var reading: CDetect.CDetectPayload {
+    @objc get
+  }
+  @objc public var taken: Foundation.Date {
+    @objc get
+  }
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers public class CDetectPeripheral : ObjectiveC.NSObject, Swift.Identifiable {
+  @objc public var id: Foundation.UUID
+  @objc public var peripheral: CoreBluetooth.CBPeripheral {
+    @objc get
+  }
+  @objc public var hasPeripheral: Swift.Bool {
+    @objc get
+  }
+  @objc public var name: Swift.String {
+    @objc get
+  }
+  @objc public var readings: CDetect.CDetectPayload {
+    @objc get
+  }
+  public var properties: CDetect.DeviceProperties {
+    get
+  }
+  public var trending: [CDetect.TrendingData] {
+    get
+  }
+  @objc public func setReadings(reading: CDetect.CDetectPayload)
+  public static func == (lhs: CDetect.CDetectPeripheral, rhs: CDetect.CDetectPeripheral) -> Swift.Bool
+  public typealias ID = Foundation.UUID
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class WaireServices {
+  public static let instance: CDetect.WaireServices
+  public var waireBluetoothManager: CDetect.WaireBluetoothManager!
+  public var waireSDKVersion: Swift.String
+  public var firmwareVersions: [CDetect.OTAType : Swift.String]
+  public func getService() -> CDetect.WaireBluetoothManager
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class WaireColours {
+  @objc deinit
+}
+public enum DeviceMode : Swift.Int {
+  case NORMAL, BOOTLOADER, FAILED_BOOT
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum ConnectionState : Swift.Int {
+  case DISCONNECTED, CONNECTING, CONNECTED, DISCONNECTING, READY
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum SensorStatus : Swift.Int {
+  case OFF
+  case VITALS_ONLY
+  case PROXIMITY_ONLY
+  case VITALS_AND_PROXIMITY
+  case UNKNOWN
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum PowerMode : Swift.Int {
+  case FULL
+  case HIGH
+  case MEDIUM
+  case LOW
+  case UNKNOWN
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum LogMode : Swift.Int {
+  case CONTINUOUS_1HZ
+  case CONTINUOUS_25HZ
+  case CONTINUOUS_25HZ_LIMITED
+  case BURST_25HZ
+  case UNKNOWN
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum HealthState : Swift.Int {
+  case OK
+  case WARN
+  case ALERT
+  case SETTLING
+  case OFF_SKIN
+  case UNKNOWN
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum Activity : Swift.Int {
+  case REST, OTHER, WALK, RUN, BIKE, RHYTHMIC
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum SkinContact : Swift.Int {
+  case UNKNOWN, NO_DECISION, OFF_SKIN, ON_OBJECT, ON_SKIN
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum UserMotion : Swift.Int {
+  case NO_MOTION, SOME_MOTION, MOTION, HIGH_MOTION, EXCESS_MOTION
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum UserPosition : Swift.Int {
+  case UNKNOWN, UPRIGHT, RECLINED, LYING_FACE_DOWN, LYING_FACE_UP, LYING_LEFT_HAND_SIDE, LYING_RIGHT_HAND_SIDE, ARM_RAISED, LEANING_FORWARD
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum OTAType : Swift.Codable {
+  case NONE, HUB, HOST, BLE
+  public static func == (a: CDetect.OTAType, b: CDetect.OTAType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum OTAStatus {
+  case IDLE
+  case PENDING
+  case STARTED
+  case TRANSFERRING
+  case VALIDATING
+  case COMPLETE
+  case FAILED
+  public static func == (a: CDetect.OTAStatus, b: CDetect.OTAStatus) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum VitalTrend : Swift.Int {
+  case UNKNOWN
+  case TREND_STABLE
+  case TREND_RISING
+  case TREND_FALLING
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum SleepQuality : Swift.Int {
+  case UNKNOWN
+  case POOR
+  case OKAY
+  case GOOD
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum ReadingQuality : Swift.Int {
+  case UNKNOWN
+  case LOW
+  case MEDIUM
+  case HIGH
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum PressureUnits : Swift.Int {
+  case MMHG
+  case KPA
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum PulseRateRange : Swift.Int {
+  case WITHIN
+  case EXCEEDS
+  case LOWER
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum PulseMeasurementPosition : Swift.Int {
+  case PROPER
+  case IMPROPER
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum WeightScaleUnits : Swift.Int {
+  case KG
+  case LB
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class OTAResponseHandler {
+  public func checkForResponse(value: Swift.String, exp: Swift.String) -> Swift.Bool
+  public func isFlashResult(value: Swift.String) -> Swift.Bool
+  public func didFlashPage(value: Swift.String) -> CDetect.PageFlashResult
+  public func isHostFlashResponse(value: Foundation.Data) -> Swift.Bool
+  @objc deinit
+}
+public enum PageFlashResult {
+  case Success
+  case Failed
+  public static func == (a: CDetect.PageFlashResult, b: CDetect.PageFlashResult) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct CDetectConfiguration : CDetect.BaseConfiguration {
+  public var cid: Swift.String
+  public var sno: Swift.String?
+  public var dlm: Swift.String?
+  public var dlp: Swift.String?
+  public var hu1: Swift.String?
+  public var hp1: Swift.String?
+  public var hu2: Swift.String?
+  public var hp2: Swift.String?
+  public var rxe: Swift.String?
+  public var tke: Swift.String?
+  public var kye: Swift.String?
+  public var rcm: Swift.String?
+  public var rcp: Swift.String?
+  public var ale: Swift.String?
+  public var pro: Swift.String?
+  public var sim: Swift.String?
+  public var lcp: Swift.String?
+  public var ssi: Swift.String?
+  public var pph: Swift.String?
+  public var wcp: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class WaireBluetoothManager : ObjectiveC.NSObject {
+  @objc public var delegate: (any CDetect.WaireBluetoothManagerDelegate)!
+  @objc public var deviceDelegate: (any CDetect.WaireDeviceDelegate)!
+  public var updateDelegate: (any CDetect.WaireUpdateDelegate)!
+  @objc public var isScanning: Swift.Bool
+  @objc public func startSensor(freq: Swift.Int)
+  @objc public func restartSensor()
+  @objc public func factoryResetSensor()
+  @objc public func getDeviceProperties()
+  @objc public func stopSensor()
+  @objc public func setConfiguration(setting: Swift.String, value: Swift.String)
+  @objc public func setConfigurations(settings: Swift.Dictionary<Swift.String, Swift.String>)
+  public func setJSONConfiguration(configuration: any CDetect.BaseConfiguration)
+  @objc public func getConfiguration(setting: Swift.String)
+  @objc deinit
+}
+extension CDetect.WaireBluetoothManager {
+  @objc dynamic public var device: CDetect.CDetectPeripheral? {
+    @objc get
+  }
+  @objc dynamic public var state: CDetect.DeviceState {
+    @objc get
+  }
+  @objc dynamic public var deviceIsConnected: Swift.Bool {
+    @objc get
+  }
+  @objc dynamic public func autoConnect(allow: Swift.Bool = false, attempts: Swift.Int = 5, attemptInterval: Swift.Double = 5)
+  @objc dynamic public func discoverDevices()
+  @objc dynamic public func stopDiscovering()
+  @objc dynamic public func connectToDevice(device: CDetect.DiscoveredDevice)
+  @objc dynamic public func disconnectFromDevice()
+}
+extension CDetect.WaireBluetoothManager : CoreBluetooth.CBCentralManagerDelegate {
+  @objc dynamic public func centralManagerDidUpdateState(_ central: CoreBluetooth.CBCentralManager)
+  @objc dynamic public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDiscover peripheral: CoreBluetooth.CBPeripheral, advertisementData: [Swift.String : Any], rssi RSSI: Foundation.NSNumber)
+  @objc dynamic public func centralManager(_ central: CoreBluetooth.CBCentralManager, didConnect peripheral: CoreBluetooth.CBPeripheral)
+  @objc dynamic public func centralManager(_ central: CoreBluetooth.CBCentralManager, didFailToConnect peripheral: CoreBluetooth.CBPeripheral, error: (any Swift.Error)?)
+  @objc dynamic public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDisconnectPeripheral peripheral: CoreBluetooth.CBPeripheral, error: (any Swift.Error)?)
+}
+extension CDetect.WaireBluetoothManager : CoreBluetooth.CBPeripheralDelegate {
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateValueFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverServices error: (any Swift.Error)?)
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverCharacteristicsFor service: CoreBluetooth.CBService, error: (any Swift.Error)?)
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverDescriptorsFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateNotificationStateFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didModifyServices invalidatedServices: [CoreBluetooth.CBService])
+}
+extension CDetect.WaireBluetoothManager {
+  public func checkForDeviceUpdates(onResult: ((_ hasUpdates: Swift.Bool, _ updatesFor: [CDetect.OTAType], _ error: (any Swift.Error)?) -> Swift.Void))
+  @objc dynamic public func updateHost()
+  @objc dynamic public func updateHub()
+  @objc dynamic public func updateBle()
+}
+@_hasMissingDesignatedInitializers public class RequestResponseUtils {
+  public static var configCheckAttempts: Swift.Int
+  public static var configPacketsTotal: Swift.Int
+  public static var configPacketsReceived: Swift.Int
+  public static var configJsonString: Swift.String
+  public static var configAutoCompletion: Foundation.Timer?
+  public static func checkForResponse(value: Swift.String, exp: Swift.String) -> Swift.Bool
+  public static func tryParseValue(value: Swift.String)
+  @objc deinit
+}
+@objc public protocol WaireBluetoothManagerDelegate {
+  @objc func onDeviceDiscovered(device: CDetect.DiscoveredDevice)
+  @objc func onDeviceConnected(device: CDetect.CDetectPeripheral)
+  @objc func onDeviceFailedToConnect(device: CDetect.CDetectPeripheral, reason: Swift.String)
+  @objc func onDeviceDisconnected(device: CDetect.CDetectPeripheral)
+  @objc func onFinishedScanning()
+  @objc func onDeviceError(device: CDetect.CDetectPeripheral, reason: Swift.String)
+}
+extension CDetect.WaireBluetoothManagerDelegate {
+  public func onDeviceDiscovered(device: CDetect.DiscoveredDevice)
+  public func onDeviceFailedToConnect(device: CDetect.CDetectPeripheral, reason: Swift.String)
+  public func onFinishedScanning()
+  public func onDeviceError(device: CDetect.CDetectPeripheral, reason: Swift.String)
+}
+@_hasMissingDesignatedInitializers public class ImageHelper {
+  public static func picture(named: Swift.String) -> UIKit.UIImage
+  @objc deinit
+}
+extension CDetect.DeviceState : Swift.Equatable {}
+extension CDetect.DeviceState : Swift.Hashable {}
+extension CDetect.DeviceState : Swift.RawRepresentable {}
+extension CDetect.DeviceType : Swift.Equatable {}
+extension CDetect.DeviceType : Swift.Hashable {}
+extension CDetect.DeviceType : Swift.RawRepresentable {}
+extension CDetect.DeviceMode : Swift.Equatable {}
+extension CDetect.DeviceMode : Swift.Hashable {}
+extension CDetect.DeviceMode : Swift.RawRepresentable {}
+extension CDetect.ConnectionState : Swift.Equatable {}
+extension CDetect.ConnectionState : Swift.Hashable {}
+extension CDetect.ConnectionState : Swift.RawRepresentable {}
+extension CDetect.SensorStatus : Swift.Equatable {}
+extension CDetect.SensorStatus : Swift.Hashable {}
+extension CDetect.SensorStatus : Swift.RawRepresentable {}
+extension CDetect.PowerMode : Swift.Equatable {}
+extension CDetect.PowerMode : Swift.Hashable {}
+extension CDetect.PowerMode : Swift.RawRepresentable {}
+extension CDetect.LogMode : Swift.Equatable {}
+extension CDetect.LogMode : Swift.Hashable {}
+extension CDetect.LogMode : Swift.RawRepresentable {}
+extension CDetect.HealthState : Swift.Equatable {}
+extension CDetect.HealthState : Swift.Hashable {}
+extension CDetect.HealthState : Swift.RawRepresentable {}
+extension CDetect.Activity : Swift.Equatable {}
+extension CDetect.Activity : Swift.Hashable {}
+extension CDetect.Activity : Swift.RawRepresentable {}
+extension CDetect.SkinContact : Swift.Equatable {}
+extension CDetect.SkinContact : Swift.Hashable {}
+extension CDetect.SkinContact : Swift.RawRepresentable {}
+extension CDetect.UserMotion : Swift.Equatable {}
+extension CDetect.UserMotion : Swift.Hashable {}
+extension CDetect.UserMotion : Swift.RawRepresentable {}
+extension CDetect.UserPosition : Swift.Equatable {}
+extension CDetect.UserPosition : Swift.Hashable {}
+extension CDetect.UserPosition : Swift.RawRepresentable {}
+extension CDetect.OTAType : Swift.Equatable {}
+extension CDetect.OTAType : Swift.Hashable {}
+extension CDetect.OTAStatus : Swift.Equatable {}
+extension CDetect.OTAStatus : Swift.Hashable {}
+extension CDetect.VitalTrend : Swift.Equatable {}
+extension CDetect.VitalTrend : Swift.Hashable {}
+extension CDetect.VitalTrend : Swift.RawRepresentable {}
+extension CDetect.SleepQuality : Swift.Equatable {}
+extension CDetect.SleepQuality : Swift.Hashable {}
+extension CDetect.SleepQuality : Swift.RawRepresentable {}
+extension CDetect.ReadingQuality : Swift.Equatable {}
+extension CDetect.ReadingQuality : Swift.Hashable {}
+extension CDetect.ReadingQuality : Swift.RawRepresentable {}
+extension CDetect.PressureUnits : Swift.Equatable {}
+extension CDetect.PressureUnits : Swift.Hashable {}
+extension CDetect.PressureUnits : Swift.RawRepresentable {}
+extension CDetect.PulseRateRange : Swift.Equatable {}
+extension CDetect.PulseRateRange : Swift.Hashable {}
+extension CDetect.PulseRateRange : Swift.RawRepresentable {}
+extension CDetect.PulseMeasurementPosition : Swift.Equatable {}
+extension CDetect.PulseMeasurementPosition : Swift.Hashable {}
+extension CDetect.PulseMeasurementPosition : Swift.RawRepresentable {}
+extension CDetect.WeightScaleUnits : Swift.Equatable {}
+extension CDetect.WeightScaleUnits : Swift.Hashable {}
+extension CDetect.WeightScaleUnits : Swift.RawRepresentable {}
+extension CDetect.PageFlashResult : Swift.Equatable {}
+extension CDetect.PageFlashResult : Swift.Hashable {}

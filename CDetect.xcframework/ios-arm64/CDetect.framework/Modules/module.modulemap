@@ -1,0 +1,6 @@
+framework module CDetect {
+  umbrella header "CDetect.h"
+  export *
+
+  module * { export * }
+}
