@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.author       = { "Waire Health" => "ruaridh@waire.health" }
 
   spec.swift_version = "5.3"
-  spec.source        = { :http => "https://github.com/WaireHealth/CDetectPodTest/releases/download/2.0.1/CDetect.xcframework.zip" }
+  spec.source        = { :http => "https://github.com/WaireHealth/CDetectPod/releases/download/2.0.1/CDetect.xcframework.zip" }
 
   spec.dependency 'ZIPFoundation', '~> 0.9.11'
   spec.dependency 'iOSDFULibrary', '~> 4.13.0'
