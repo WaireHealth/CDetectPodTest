@@ -8,13 +8,13 @@
 		<data>
 		RcrJvn+j4GBzdkrw7YJ9gXGjp2E=
 		</data>
+		<key>Headers/CDetect-Swift.h</key>
+		<data>
+		Pf4/9ztQkAUTgo2oRldGNl9ORHM=
+		</data>
 		<key>Headers/CDetect.h</key>
 		<data>
-		Yd5CTBzvpCqLU1Tps4FHTnjAZfk=
-		</data>
-		<key>Headers/WaireBluetoothManager.h</key>
-		<data>
-		W8H/q0FH/QmKDabTKZ+NNtVGsLg=
+		yVHoVeHThbitMRWM0301qyo4who=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		8qW5fJTP6PE1L1Ysmo8vankLB5k=
+		TQKzYci5RN34ReBYSna8FKXJbCg=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -74,18 +74,18 @@
 			irrndI/49MxJ6YL6Uf9qCYZowsmawQbb93WMv4VF6Ho=
 			</data>
 		</dict>
+		<key>Headers/CDetect-Swift.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ShALpbfs2Y4bvdHieCJlycMLewjoaH62dl/zfmU2Wpo=
+			</data>
+		</dict>
 		<key>Headers/CDetect.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1cHFLggCro1PxQyiVO5UfBeXgwh1eKp1kYoIXPZNdq4=
-			</data>
-		</dict>
-		<key>Headers/WaireBluetoothManager.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			in+D2KezPw0kNLvVMs070Yg7b/4JwA9KIeh7HwOX2Fw=
+			0KCHMmxl0XuwRiB46fXdG6n0z/FlotjGNs1WmqYORPY=
 			</data>
 		</dict>
 		<key>Modules/CDetect.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -162,7 +162,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			r+xlKQ/xNP5QFef6ERWFtPOlFMkjyPnUG0TGbvUuzUE=
+			cljqpy3m7A3xOYtSkUMeXJybKSbcePlZZMoBfdDrylg=
 			</data>
 		</dict>
 	</dict>

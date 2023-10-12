@@ -4,3 +4,8 @@ framework module CDetect {
 
   module * { export * }
 }
+
+module CDetect.Swift {
+  header "CDetect-Swift.h"
+  requires objc
+}
